@@ -64,10 +64,29 @@ struct ModelFusion {
                 element.frame = claim(shown, as: .exact)
             }
         }
+        if element.frame == nil, let field = joinedField(after: control.label) {
+            element.frame = field.frame
+            if !control.secret, field.text.matchKey != control.placeholder?.matchKey {
+                element.value = field.text
+            }
+        }
         if element.frame == nil {
             element.frame = claim(control.label, as: .apart)
         }
         return element
+    }
+
+    private mutating func joinedField(after label: String) -> (frame: CGRect, text: String)? {
+        let prefix = label.matchKey + " "
+        let found = texts.indices.first { index in
+            !claimed.contains(index) && partial[index] == nil && texts[index].link == nil && keys[index].hasPrefix(prefix)
+        }
+        guard let found else { return nil }
+        let shown = texts[found].text.split(whereSeparator: \.isWhitespace).joined(separator: " ")
+        let rest = String(keys[found].dropFirst(prefix.count))
+        guard shown.count == keys[found].count, !controlLabels.contains(where: { rest == $0 || rest.hasPrefix($0 + " ") }) else { return nil }
+        claimed.insert(found)
+        return (slice(found, prefix.count..<keys[found].count), String(shown.dropFirst(prefix.count)))
     }
 
     private mutating func claim(_ text: String, as placement: Placement) -> CGRect? {

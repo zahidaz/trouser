@@ -52,6 +52,25 @@ struct ModelFusionTests {
         #expect(full.role == .textarea)
     }
 
+    @Test func fieldSharingAChunkWithItsLabelIsPlacedAtItsText() throws {
+        let texts = [chunk("App name Trouser", 20, 140, width: 160), chunk("Short description A tiny app", 20, 180, width: 280)]
+        let controls = [
+            DOMControl(role: .textbox, label: "App name"),
+            DOMControl(role: .textbox, label: "Short description", value: "A tiny app")
+        ]
+        let elements = ModelFusion.elements(controls: controls, texts: texts)
+        #expect(elements.map(\.value) == ["Trouser", "A tiny app"])
+        #expect(elements.map(\.center) == [CGPoint(x: 145, y: 149), CGPoint(x: 250, y: 189)])
+        #expect(elements.filter { $0.source == .text }.isEmpty)
+    }
+
+    @Test func labelFollowedByAnotherControlsLabelIsNotAField() throws {
+        let texts = [chunk("Search Sign in", 20, 140)]
+        let controls = [DOMControl(role: .textbox, label: "Search"), DOMControl(role: .button, label: "Sign in")]
+        let search = try #require(ModelFusion.elements(controls: controls, texts: texts).first { $0.label == "Search" })
+        #expect(search.value == nil)
+    }
+
     @Test func iconOnlyButtonIsListedUnplaced() throws {
         let icon = try #require(fused().first { $0.label == "Upload icon" })
         #expect(icon.frame == nil)
