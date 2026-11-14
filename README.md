@@ -10,7 +10,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/zahidaz/trouser/releases/latest/download/Trouser.zip"><img src="https://img.shields.io/badge/Download_for_macOS-Trouser.zip-2f4f8f?style=for-the-badge&logo=apple&logoColor=white" alt="Download Trouser for macOS" height="44"></a>
+  <a href="https://github.com/zahidaz/trouser/releases/latest"><img src="https://img.shields.io/badge/Download_for_macOS-Trouser.zip-2f4f8f?style=for-the-badge&logo=apple&logoColor=white" alt="Download Trouser for macOS" height="44"></a>
 </p>
 
 <p align="center">
@@ -76,7 +76,7 @@ AppKit and WebKit in the App Sandbox. No Chromium, no driver, no runtime to inst
 
 Requires macOS 14 or later.
 
-**From a release:** download [Trouser.zip](https://github.com/zahidaz/trouser/releases/latest/download/Trouser.zip), the latest release, then
+**From a release:** download Trouser.zip from the [latest release](https://github.com/zahidaz/trouser/releases/latest), then
 
 ```sh
 unzip Trouser.zip -d /Applications
