@@ -1,6 +1,8 @@
 import AppKit
 
 final class AddressField: NSSearchField {
+    private static let reloadLabel = "Reload Page"
+
     var url: URL? {
         didSet { if currentEditor() == nil { showSummary() } }
     }
@@ -17,6 +19,7 @@ final class AddressField: NSSearchField {
         setContentHuggingPriority(.defaultLow, for: .horizontal)
         widthAnchor.constraint(greaterThanOrEqualToConstant: 360).isActive = true
         widthAnchor.constraint(lessThanOrEqualToConstant: 820).isActive = true
+        showReload()
         showSummary()
     }
 
@@ -41,6 +44,24 @@ final class AddressField: NSSearchField {
     override func textDidEndEditing(_ notification: Notification) {
         super.textDidEndEditing(notification)
         showSummary()
+    }
+
+    override func layout() {
+        super.layout()
+        removeAllToolTips()
+        guard let cell = cell as? NSSearchFieldCell else { return }
+        addToolTip(cell.cancelButtonRect(forBounds: bounds), owner: Self.reloadLabel as NSString, userData: nil)
+    }
+
+    private func showReload() {
+        guard let button = (cell as? NSSearchFieldCell)?.cancelButtonCell else { return }
+        let image = NSImage(systemSymbolName: "arrow.clockwise", accessibilityDescription: Self.reloadLabel)?
+            .withSymbolConfiguration(NSImage.SymbolConfiguration(pointSize: NSFont.systemFontSize, weight: .medium))
+        button.image = image
+        button.alternateImage = image
+        button.setAccessibilityLabel(Self.reloadLabel)
+        button.target = nil
+        button.action = #selector(BrowserWindowController.reload(_:))
     }
 
     private func showSummary() {
