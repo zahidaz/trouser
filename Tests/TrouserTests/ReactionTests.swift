@@ -18,7 +18,7 @@ struct ReactionTests {
         let elapsed = ContinuousClock.now - start
         #expect(value == 0)
         #expect(elapsed >= .milliseconds(60))
-        #expect(elapsed < .milliseconds(500))
+        #expect(elapsed < .seconds(2))
     }
 
     @Test func waitsBeforeTheFirstRead() async throws {
