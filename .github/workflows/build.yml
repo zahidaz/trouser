@@ -1,0 +1,45 @@
+name: Build
+
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+  pull_request:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Test
+        run: swift test
+
+      - name: Build the app
+        env:
+          ARCHS: arm64 x86_64
+          BUILD_NUMBER: ${{ github.run_number }}
+        run: |
+          if [[ "$GITHUB_REF" == refs/tags/v* ]]; then
+            export VERSION="${GITHUB_REF_NAME#v}"
+          fi
+          scripts/bundle.sh
+          codesign --verify --deep --strict build/Trouser.app
+          ditto -c -k --keepParent build/Trouser.app Trouser.zip
+          shasum -a 256 Trouser.zip > Trouser.zip.sha256
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Trouser
+          path: |
+            Trouser.zip
+            Trouser.zip.sha256
+
+      - name: Publish the release
+        if: startsWith(github.ref, 'refs/tags/v')
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "$GITHUB_REF_NAME" Trouser.zip Trouser.zip.sha256 --title "Trouser ${GITHUB_REF_NAME#v}" --generate-notes

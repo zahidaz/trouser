@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Harness Session</title></head>
+<body>
+<h1>Session</h1>
+<p id="state">checking</p>
+<script>
+const signedIn = document.cookie.includes("harness_session=1")
+document.getElementById("state").textContent = signedIn ? "Signed in from earlier" : "New session"
+document.cookie = "harness_session=1; path=/"
+</script>
+</body>
+</html>

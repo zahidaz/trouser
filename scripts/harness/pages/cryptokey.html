@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html><head><title>Stored key</title></head><body>
+<h1>Stored key</h1>
+<p id="result">working</p>
+<script>
+(async () => {
+    const result = document.getElementById("result");
+    try {
+        const key = await crypto.subtle.generateKey({name: "AES-GCM", length: 256}, false, ["encrypt"]);
+        const database = await new Promise((resolve, reject) => {
+            const request = indexedDB.open("keys", 1);
+            request.onupgradeneeded = () => request.result.createObjectStore("keys");
+            request.onsuccess = () => resolve(request.result);
+            request.onerror = () => reject(request.error);
+        });
+        await new Promise((resolve, reject) => {
+            const transaction = database.transaction("keys", "readwrite");
+            transaction.objectStore("keys").put(key, "main");
+            transaction.oncomplete = resolve;
+            transaction.onerror = () => reject(transaction.error);
+        });
+        const stored = await new Promise((resolve, reject) => {
+            const request = database.transaction("keys").objectStore("keys").get("main");
+            request.onsuccess = () => resolve(request.result);
+            request.onerror = () => reject(request.error);
+        });
+        result.textContent = stored instanceof CryptoKey ? "key stored" : "key missing";
+    } catch (error) {
+        result.textContent = "key failed: " + error;
+    }
+})();
+</script>
+</body></html>

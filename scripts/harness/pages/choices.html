@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Harness Choices</title>
+<style>body{font:15px -apple-system,sans-serif;margin:40px}label{display:block;margin:10px 0}</style></head>
+<body>
+<h1>Choices</h1>
+<fieldset><legend>Size</legend>
+<label><input type="radio" name="size" value="Large"> Large</label>
+<label><input type="radio" name="size" value="Medium"> Medium</label>
+<label><input type="radio" name="size" value="Small"> Small</label>
+</fieldset>
+<fieldset><legend>Duration</legend>
+<label><input type="radio" name="duration" value="Months"> Months</label>
+<label><input type="radio" name="duration" value="Weeks"> Weeks</label>
+<label><input type="radio" name="duration" value="Days"> Days</label>
+</fieldset>
+<p id="picked">Picked: none</p>
+<script>
+document.addEventListener("change", () => {
+  const picked = [...document.querySelectorAll("input:checked")].map(input => input.value)
+  document.getElementById("picked").textContent = "Picked: " + (picked.join(", ") || "none")
+})
+</script>
+</body>
+</html>

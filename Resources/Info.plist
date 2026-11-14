@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CFBundleIdentifier</key>
+    <string>app.trouser.browser</string>
+    <key>CFBundleName</key>
+    <string>Trouser</string>
+    <key>CFBundleDisplayName</key>
+    <string>Trouser</string>
+    <key>CFBundleExecutable</key>
+    <string>Trouser</string>
+    <key>CFBundleIconFile</key>
+    <string>AppIcon</string>
+    <key>CFBundlePackageType</key>
+    <string>APPL</string>
+    <key>CFBundleShortVersionString</key>
+    <string>1.0.0</string>
+    <key>CFBundleVersion</key>
+    <string>1</string>
+    <key>LSApplicationCategoryType</key>
+    <string>public.app-category.productivity</string>
+    <key>LSMinimumSystemVersion</key>
+    <string>14.0</string>
+    <key>NSHighResolutionCapable</key>
+    <true/>
+    <key>LSFileQuarantineEnabled</key>
+    <true/>
+    <key>NSCameraUsageDescription</key>
+    <string>Websites you allow in Settings › Profile Rules can use the camera.</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>Websites you allow in Settings › Profile Rules can use the microphone.</string>
+    <key>NSPrincipalClass</key>
+    <string>NSApplication</string>
+</dict>
+</plist>

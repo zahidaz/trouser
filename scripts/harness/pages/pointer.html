@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Harness Pointer</title>
+<style>
+body { font: 16px -apple-system, sans-serif; margin: 40px; }
+ul { list-style: none; padding: 0; width: 260px; border: 1px solid #ccc; }
+li { padding: 10px; cursor: pointer; }
+li.active { background: #def; }
+button { font-size: 16px; padding: 8px 16px; margin: 8px 0; }
+</style></head>
+<body>
+<h1>Pointer</h1>
+<ul id="locales" role="listbox" aria-label="Locale">
+<li role="option">United States – English</li>
+<li role="option">Canada – English</li>
+<li role="option">Canada – Français</li>
+</ul>
+<button id="hold">Hold to confirm</button>
+<button id="twice">Count presses</button>
+<p id="picked">Locale: none</p>
+<p id="held">Hold: no</p>
+<p id="count">Presses: 0</p>
+<script>
+const options = [...document.querySelectorAll("#locales li")]
+let active = null
+options.forEach(option => option.addEventListener("mouseenter", () => {
+  options.forEach(other => other.classList.toggle("active", other === option))
+  active = option
+}))
+document.getElementById("locales").addEventListener("click", () => {
+  document.getElementById("picked").textContent = "Locale: " + (active ? active.textContent : "none")
+})
+let downAt = 0
+const hold = document.getElementById("hold")
+hold.addEventListener("pointerdown", event => { downAt = event.timeStamp })
+hold.addEventListener("pointerup", event => {
+  document.getElementById("held").textContent = "Hold: " + (event.timeStamp > downAt ? "yes" : "no")
+})
+let presses = 0
+document.getElementById("twice").addEventListener("click", () => {
+  presses += 1
+  document.getElementById("count").textContent = "Presses: " + presses
+})
+</script>
+</body>
+</html>

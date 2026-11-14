@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Harness Inner</title>
+<style>
+body { font: 16px -apple-system, sans-serif; margin: 40px; }
+#box { height: 600px; width: 500px; overflow: auto; border: 1px solid #ccc; }
+button { display: block; font-size: 16px; margin: 10px; padding: 8px 16px; }
+</style>
+</head>
+<body>
+<h1>Inner scroll</h1>
+<div id="box"></div>
+<p id="status">Picked none</p>
+<script>
+const box = document.getElementById("box");
+for (let i = 1; i <= 60; i++) {
+  const item = document.createElement("button");
+  item.textContent = "Item " + i;
+  item.addEventListener("click", () => { document.getElementById("status").textContent = "Picked number " + i; });
+  box.appendChild(item);
+}
+</script>
+</body>
+</html>

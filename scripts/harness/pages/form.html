@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Store listing</title>
+<style>
+body { font: 16px -apple-system, sans-serif; margin: 0; }
+nav a { margin: 0 12px; }
+main { margin: 24px 40px; }
+.card { border: 1px solid #ccc; padding: 12px; margin: 12px 0; width: 480px; }
+button { font-size: 16px; margin: 8px 8px 8px 0; padding: 8px 16px; }
+.icon { width: 16px; height: 16px; }
+</style>
+</head>
+<body>
+<nav><a href="index.html">Home</a><a href="heavy.html">Releases</a><a href="account.html">Manage account</a><a href="form.html">Store listing</a></nav>
+<main>
+<div role="alert">Action required: verify your developer account</div>
+<h1>Store listing</h1>
+<p><label for="name">App name</label> <input id="name" required></p>
+<p><label for="summary">Short description</label> <input id="summary" value="A tiny app"></p>
+<div class="card"><h2>About you</h2><button><img class="icon" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16'%3E%3Cpath d='M4 2l8 6-8 6z'/%3E%3C/svg%3E"></button></div>
+<button id="save">Save draft</button>
+<button id="publish" disabled>Publish</button>
+<p>Only the account owner can publish this app</p>
+<button id="continue">Continue</button>
+</main>
+<script>
+document.getElementById("continue").addEventListener("click", () => { location.href = "account.html"; });
+</script>
+</body>
+</html>

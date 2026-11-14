@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Harness Drag</title>
+<style>
+body { font: 16px -apple-system, sans-serif; margin: 40px; }
+#surface { position: relative; width: 600px; height: 300px; border: 1px solid #ccc; overflow: hidden; touch-action: none; }
+#box { position: absolute; left: 20px; top: 20px; width: 60px; height: 60px; background: #48c; }
+</style></head>
+<body>
+<h1>Drag</h1>
+<div id="surface"><div id="box"></div></div>
+<p id="moved">Box: 20,20</p>
+<p id="events">Events: none</p>
+<script>
+const box = document.getElementById("box")
+let grip = null
+let moves = 0
+box.addEventListener("pointerdown", event => {
+  grip = { x: event.clientX - box.offsetLeft, y: event.clientY - box.offsetTop }
+  moves = 0
+  box.setPointerCapture(event.pointerId)
+})
+box.addEventListener("pointermove", event => {
+  if (!grip) return
+  moves += 1
+  box.style.left = `${event.clientX - grip.x}px`
+  box.style.top = `${event.clientY - grip.y}px`
+})
+box.addEventListener("pointerup", () => {
+  if (!grip) return
+  grip = null
+  document.getElementById("moved").textContent = `Box: ${box.offsetLeft},${box.offsetTop}`
+  document.getElementById("events").textContent = `Events: down, ${moves} moves, up`
+})
+</script>
+</body>
+</html>

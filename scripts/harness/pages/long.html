@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Harness Long</title>
+<style>
+body { font: 16px -apple-system, sans-serif; margin: 40px; }
+#footer { position: fixed; left: 0; right: 0; bottom: 0; padding: 8px 40px; background: #eef; }
+</style>
+</head>
+<body>
+<h1>Harness long</h1>
+<div id="lines"></div>
+<p id="footer">Footer status pinned</p>
+<script>
+const lines = document.getElementById("lines");
+for (let i = 1; i <= 12000; i++) {
+  const line = document.createElement("div");
+  line.textContent = "Line " + i;
+  lines.appendChild(line);
+}
+</script>
+</body>
+</html>

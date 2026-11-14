@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 372" width="780" height="372" role="img" aria-label="A trouser session: page lists the controls that matter, set fills a field, tap presses a button, and the reply shows what changed.">
+<defs>
+<linearGradient id="glass" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#101f45"/><stop offset="1" stop-color="#0a1838"/></linearGradient>
+</defs>
+<rect x="1" y="1" width="778" height="370" rx="14" fill="url(#glass)" stroke="#2f4f8f" stroke-width="1.5"/>
+<path d="M1 42h778" stroke="#1c3266" stroke-width="1.5"/>
+<circle cx="26" cy="22" r="6.5" fill="#ff5f57"/>
+<circle cx="48" cy="22" r="6.5" fill="#febc2e"/>
+<circle cx="70" cy="22" r="6.5" fill="#28c840"/>
+<text x="390" y="27" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="13" fill="#7f97c9">trouser</text>
+<g font-family="ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,'Liberation Mono',monospace" font-size="14.5" xml:space="preserve">
+<text x="28" y="76"><tspan fill="#f2a03d">$</tspan><tspan fill="#f4f6fb"> trouser page</tspan></text>
+<text x="28" y="101" fill="#9fc0ff">Store listing — shop.example.com/admin/app/42/listing</text>
+<text x="28" y="126"><tspan fill="#ff8a7a">!</tspan><tspan fill="#ffd08a"> e4</tspan><tspan fill="#c9d4ec"> textbox “App name” (empty) required</tspan></text>
+<text x="28" y="151"><tspan fill="#7f97c9">&gt;</tspan><tspan fill="#ffd08a"> e6</tspan><tspan fill="#c9d4ec"> button “Save draft”</tspan></text>
+<text x="28" y="176"><tspan fill="#7f97c9">nav:</tspan><tspan fill="#ffd08a"> e11</tspan><tspan fill="#c9d4ec"> “Home” · </tspan><tspan fill="#ffd08a">e12</tspan><tspan fill="#c9d4ec"> “Releases”</tspan></text>
+<text x="28" y="226"><tspan fill="#f2a03d">$</tspan><tspan fill="#f4f6fb"> trouser set "App name" "My app"</tspan></text>
+<text x="28" y="251"><tspan fill="#f2a03d">$</tspan><tspan fill="#f4f6fb"> trouser tap "save draft"</tspan></text>
+<text x="28" y="276"><tspan fill="#c9d4ec">tap </tspan><tspan fill="#ffd08a">e6</tspan><tspan fill="#c9d4ec"> button “Save draft”: </tspan><tspan fill="#6fdc8c">done</tspan></text>
+<text x="28" y="301"><tspan fill="#6fdc8c">+</tspan><tspan fill="#ffd08a"> e21</tspan><tspan fill="#c9d4ec">  text  “Saved”  112,239</tspan></text>
+<text x="28" y="340" fill="#f2a03d">$</text>
+<rect x="46" y="327" width="9" height="17" fill="#f4f6fb"><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.5;0.5;1" dur="1.1s" repeatCount="indefinite"/></rect>
+</g>
+</svg>
