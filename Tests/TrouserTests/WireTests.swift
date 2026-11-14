@@ -58,6 +58,15 @@ struct RoundTripTests {
         #expect(response == .success("echoed 1"))
     }
 
+    @Test func listeningCreatesTheMissingSocketDirectory() throws {
+        let directory = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("trouser-test-\(UUID().uuidString.prefix(8))")
+        defer { try? FileManager.default.removeItem(at: directory) }
+        let nested = directory.appendingPathComponent("tmp/trouser.sock").path
+        let listener = try UnixSocket.listen(at: nested)
+        defer { listener.close() }
+        try UnixSocket.connect(to: nested).close()
+    }
+
     @Test func acceptingSurvivesPassingErrorsOnly() {
         #expect(UnixSocket.passes(ECONNABORTED))
         #expect(UnixSocket.passes(EINTR))

@@ -16,6 +16,7 @@ struct UnixSocket: Sendable {
     }
 
     static func listen(at path: String) throws -> UnixSocket {
+        try FileManager.default.createDirectory(at: URL(fileURLWithPath: path).deletingLastPathComponent(), withIntermediateDirectories: true)
         unlink(path)
         let socket = try make()
         guard withAddress(path, { bind(socket.descriptor, $0, $1) }) == 0,
