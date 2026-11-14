@@ -4,6 +4,7 @@ import SwiftUI
 extension NSToolbarItem.Identifier {
     static let navigation = Self("navigation")
     static let address = Self("address")
+    static let reload = Self("reload")
     static let burn = Self("burn")
     static let home = Self("home")
     static let share = Self("share")
@@ -34,7 +35,7 @@ extension BrowserWindowController: NSToolbarDelegate, NSSharingServicePickerTool
     func toolbarDefaultItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
         [
             .toggleSidebar, .sidebarTrackingSeparator, .navigation,
-            .flexibleSpace, .address, .flexibleSpace,
+            .flexibleSpace, .address, .reload, .flexibleSpace,
             .burn, .space, .home, .downloads, .share, .newTab, .tabOverview,
             .space, .sendToBackground, .profile,
             .inspectorTrackingSeparator, .toggleInspector
@@ -53,6 +54,7 @@ extension BrowserWindowController: NSToolbarDelegate, NSSharingServicePickerTool
         switch identifier {
         case .navigation: navigationItem()
         case .address: addressItem()
+        case .reload: button(identifier, "Reload Page", "arrow.clockwise", #selector(reload(_:)), target: self)
         case .burn: button(identifier, "Burn Everything", "flame", #selector(AppDelegate.burnEverything(_:)), target: nil)
         case .home: button(identifier, "Start Page", "house", #selector(showStartPage(_:)), target: self)
         case .share: shareItem()
